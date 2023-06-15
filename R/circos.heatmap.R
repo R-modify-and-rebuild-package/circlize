@@ -406,7 +406,7 @@ circos.heatmap = function(mat, split = NULL, col, na.col = "grey",
 	if(length(rownames.cex) == 1) rownames.cex = rep(rownames.cex, nr)
 	if(length(rownames.font) == 1) rownames.font = rep(rownames.font, nr)
 	if(length(rownames.col) == 1) rownames.col = rep(rownames.col, nr)
-	if(length(rownames.family) == 1) rownames.family = rep(rownames.family, nr)
+	#if(length(rownames.family) == 1) rownames.family = rep(rownames.family, nr)
 
 	if(!is.null(rownames(mat))) {
 		subset_list = lapply(env$sector.meta.data, function(x) {
@@ -424,12 +424,11 @@ circos.heatmap = function(mat, split = NULL, col, na.col = "grey",
 				    m = mat_list[[sector.numeric.index]]
 				    od = CELL_META$row_order
 				    nr = nrow(m)
-	    
 				    if(!is.null(rownames(m))) {
 				    	circos.text(CELL_META$cell_middle[od], rep(0, nr), rownames(m)[od], 
 				    		cex = rownames.cex[CELL_META$subset][od], 
 				    		font = rownames.font[CELL_META$subset][od], 
-						family = rownames.family[CELL_META$subset][od], 
+						family = rownames.family, 
 						col = rownames.col[CELL_META$subset][od],
 				    		facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5))
 				    }
