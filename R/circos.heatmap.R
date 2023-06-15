@@ -334,7 +334,7 @@ circos.heatmap = function(mat, split = NULL, col, na.col = "grey",
 	dend.callback = function(dend, m, si) reorder(dend, rowMeans(m)),
 	dend.side = c("none", "outside", "inside"), dend.track.height = 0.1,
 	rownames.side = c("none", "outside", "inside"), rownames.cex = 0.5,
-	rownames.font = par("font"), rownames.col = "black", 
+	rownames.font = par("font"), rownames.family = NULL , rownames.col = "black", 
 	show.sector.labels = FALSE, cell_width = rep(1, nrow(mat)), ...) {
 
 	if(!is.matrix(mat)) {
@@ -406,6 +406,7 @@ circos.heatmap = function(mat, split = NULL, col, na.col = "grey",
 	if(length(rownames.cex) == 1) rownames.cex = rep(rownames.cex, nr)
 	if(length(rownames.font) == 1) rownames.font = rep(rownames.font, nr)
 	if(length(rownames.col) == 1) rownames.col = rep(rownames.col, nr)
+	if(length(rownames.family) == 1) rownames.family = rep(rownames.family, nr)
 
 	if(!is.null(rownames(mat))) {
 		subset_list = lapply(env$sector.meta.data, function(x) {
@@ -427,7 +428,9 @@ circos.heatmap = function(mat, split = NULL, col, na.col = "grey",
 				    if(!is.null(rownames(m))) {
 				    	circos.text(CELL_META$cell_middle[od], rep(0, nr), rownames(m)[od], 
 				    		cex = rownames.cex[CELL_META$subset][od], 
-				    		font = rownames.font[CELL_META$subset][od], col = rownames.col[CELL_META$subset][od],
+				    		font = rownames.font[CELL_META$subset][od], 
+						family = rownames.family[CELL_META$subset][od], 
+						col = rownames.col[CELL_META$subset][od],
 				    		facing = "clockwise", niceFacing = TRUE, adj = c(0, 0.5))
 				    }
 
